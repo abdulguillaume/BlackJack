@@ -145,6 +145,45 @@ namespace BlackJackTest
         }
 
         [TestMethod]
+        public void DealerCanStandPlayerHasMorePointsAceConsiderAs11()
+        {
+            List<Card> _cards = new List<Card>();
+            _cards.Add(new Card(Card.Suits.CLUBS, "A"));
+
+            _cards.Add(new Card(Card.Suits.CLUBS, "4"));
+
+            _cards.Add(new Card(Card.Suits.CLUBS, "10"));
+
+            Deck main_deck = new Deck(isMain: false)
+            {
+                _cards = _cards
+            };
+
+            Deck side_deck = new Deck(isMain: false);
+
+            Game game = new Game
+            {
+                main_deck = main_deck,
+                side_deck = side_deck
+            };
+
+            Player dealer = new Player("Dealer", game);
+            Player player = new Player("Player", game);
+
+            game.dealer = dealer;
+            game.player = player;
+
+            player.Hit(); //10
+            dealer.Hit(); //4
+            player.Stand();
+            dealer.Hit(); //4 A (initially 5
+            player.Stand();//10
+            dealer.Stand();//can actually stand, now the Ace is worth 11. => 4+11=15
+
+            Assert.IsTrue(dealer.GetHandPts() == 15);
+        }
+
+        [TestMethod]
         public void PlayerHitMainDeckDecrease()
         {
             List<Card> _cards = new List<Card>();
