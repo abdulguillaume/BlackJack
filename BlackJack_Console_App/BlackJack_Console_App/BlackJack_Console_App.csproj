@@ -43,9 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\CannotStandException.cs" />
+    <Compile Include="Exceptions\CardNotValidException.cs" />
+    <Compile Include="Exceptions\DeckEmptyException.cs" />
+    <Compile Include="Exceptions\LoseGameException.cs" />
+    <Compile Include="Exceptions\TieGameException.cs" />
+    <Compile Include="Exceptions\WinGameException.cs" />
     <Compile Include="Models\Card.cs" />
-    <Compile Include="Models\Deck.cs" />
+    <Compile Include="Models\CardStack.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\Deck.cs" />
+    <Compile Include="Models\Hand.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
